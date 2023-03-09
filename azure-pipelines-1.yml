@@ -1,0 +1,13 @@
+trigger: none
+
+pool:
+  name: 'Default'
+
+steps:
+# Publish the ASP.NET Core Application
+- task: DotNetCoreCLI@2
+  inputs:
+    command: 'publish'
+    publishWebProjects: true
+    arguments: '-c release'
+    zipAfterPublish: false
