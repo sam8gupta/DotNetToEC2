@@ -1,0 +1,11 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<div class="text-center">
+    <h1 class="display-4">Welcome to AWS, User</h1>
+    <p>Host: @Environment.MachineName</p>
+    <p>Host Header: @Request.Host.Host</p>
+</div>
