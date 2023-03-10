@@ -33,4 +33,4 @@ steps:
     regionName: 'us-west-2'
     messageTarget: 'queue'
     message: '{"Build":"DotNetToEC2"}'
-    queueUrl: 'https://sqs.us-east-2.amazonaws.com/425173371283/AzureDevOpsBuild'
+    queueUrl: 'https://sqs.us-west-2.amazonaws.com/585649988287/Deployment'
