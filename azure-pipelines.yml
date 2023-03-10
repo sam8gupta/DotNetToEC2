@@ -12,10 +12,11 @@ steps:
     arguments: '-c release'
     zipAfterPublish: true
 
-# Download an artifact named 'WebApp' to 'bin' in $(Build.SourcesDirectory)
-- task: DownloadPipelineArtifact@2
+- task: PublishPipelineArtifact@1
   inputs:
-    buildType: 'current'
+    targetPath: '$(Pipeline.Workspace)'
+    artifact: 'demo_artifact'
+    publishLocation: 'pipeline'
 
 # # Deploy the ASP.NET Core Application to AWS using CodeDeploy
 # - task: CodeDeployDeployApplication@1
