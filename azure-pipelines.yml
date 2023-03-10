@@ -10,32 +10,27 @@ steps:
     command: 'publish'
     publishWebProjects: true
     arguments: '-c release'
-    zipAfterPublish: true
+    zipAfterPublish: false
 
-- task: PublishPipelineArtifact@1
+
+# Deploy the ASP.NET Core Application to AWS using CodeDeploy
+- task: CodeDeployDeployApplication@1
   inputs:
-    targetPath: '$(Pipeline.Workspace)'
-    artifact: 'demo_artifact'
-    publishLocation: 'pipeline'
-
-# # Deploy the ASP.NET Core Application to AWS using CodeDeploy
-# - task: CodeDeployDeployApplication@1
-#   inputs:
-#     awsCredentials: 'AWS - DotNet Account'
-#     regionName: 'us-east-2'
-#     applicationName: 'DotNetCoreIIS'
-#     deploymentGroupName: 'DotNetCoreIIS'
-#     deploymentRevisionSource: 'workspace'
-#     revisionBundle: 'WebAppForDeploy/bin/release/net6.0/publish'
-#     bucketName: 'dotnet-deploy-demo'
-#     bundlePrefix: 'prod'
-#     description: 'Deploy DotNetCoreIIS'
-#     fileExistsBehavior: 'OVERWRITE'
-#     timeoutInMins: 180
-# - task: SendMessage@1
-#   inputs:
-#     awsCredentials: 'AWS - DotNet Account'
-#     regionName: 'us-east-2'
-#     messageTarget: 'queue'
-#     message: '{"Build":"DotNetToEC2"}'
-#     queueUrl: 'https://sqs.us-east-2.amazonaws.com/425173371283/AzureDevOpsBuild'
+    awsCredentials: 'AWS - DotNet Account'
+    regionName: 'us-west-2'
+    applicationName: 'EC2_POC'
+    deploymentGroupName: 'EC2_POC'
+    deploymentRevisionSource: 'workspace'
+    revisionBundle: 'WebAppForDeploy/bin/release/net6.0/publish'
+    bucketName: 'dotnet-deploy-demo'
+    bundlePrefix: 'prod'
+    description: 'Deploy DotNetCoreIIS'
+    fileExistsBehavior: 'OVERWRITE'
+    timeoutInMins: 180
+- task: SendMessage@1
+  inputs:
+    awsCredentials: 'AWS - DotNet Account'
+    regionName: 'us-west-2'
+    messageTarget: 'queue'
+    message: '{"Build":"DotNetToEC2"}'
+    queueUrl: 'https://sqs.us-east-2.amazonaws.com/425173371283/AzureDevOpsBuild'
