@@ -14,9 +14,6 @@ steps:
 
 # Download an artifact named 'WebApp' to 'bin' in $(Build.SourcesDirectory)
 - task: DownloadPipelineArtifact@2
-  inputs:
-    artifactName: 'WebApp'
-    targetPath: $(Build.SourcesDirectory)/bin
 
 # # Deploy the ASP.NET Core Application to AWS using CodeDeploy
 # - task: CodeDeployDeployApplication@1
