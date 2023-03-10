@@ -22,7 +22,7 @@ steps:
     deploymentGroupName: 'EC2_POC'
     deploymentRevisionSource: 'workspace'
     revisionBundle: 'WebAppForDeploy/bin/release/net6.0/publish'
-    bucketName: 'dotnet-deploy-demo'
+    bucketName: 'dotnet-deploy-shiva-demo'
     bundlePrefix: 'prod'
     description: 'Deploy DotNetCoreIIS'
     fileExistsBehavior: 'OVERWRITE'
